@@ -7,6 +7,57 @@
   <version>1.0-SNAPSHOT</version>
   <name>java-ffm</name>
   <url>http://maven.apache.org</url>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.10.1</version>
+        <configuration>
+          <source>19</source>
+          <target>19</target>
+          <compilerArgument>-Xlint:unchecked</compilerArgument>
+          <compilerArgument>--enable-preview</compilerArgument>
+          <compilerArgs>
+            <arg>--add-modules</arg>
+            <arg>jdk.incubator.foreign</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.0.0</version>
+        <configuration>
+          <mainClass>com.tzj.javaffm.App</mainClass>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.2</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <mainClass>com.tzj.javaffm.App</mainClass>
+            </manifest>
+            <manifestEntries>
+              <mode>development</mode>
+            </manifestEntries>
+          </archive>
+        </configuration>
+       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M6</version>
+        <configuration>
+          <argLine>-Djava.library.path=".:rational-rs/target/release/"</argLine>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -15,4 +66,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
 </project>
