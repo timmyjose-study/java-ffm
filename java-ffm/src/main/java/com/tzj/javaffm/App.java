@@ -17,8 +17,6 @@ public class App {
     System.loadLibrary("rational_c");
     var linker = CLinker.systemCLinker();
 
-    System.loadLibrary("rational_c");
-
     var rat_init =
         linker.downcallHandle(
             SymbolLookup.loaderLookup().lookup("rat_init").get(),

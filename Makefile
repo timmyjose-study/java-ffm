@@ -2,7 +2,7 @@ CC := gcc
 CFLAGS := -Wall -Werror -std=c17 -O2
 
 C_SRC := $(wildcard rational-c/src/*.c)
-C_INC := $(wildcar rational-c/include/*.h)
+C_INC := $(wildcard rational-c/include/*.h)
 C_LIB := librational_c.dylib
 
 .PHONY: all clean make_c make_rust make_java \
@@ -11,7 +11,7 @@ C_LIB := librational_c.dylib
 all: make_java
 
 make_c: $(C_INC)
-	$(CC) $(CFLAGS) -dynamiclib -o $(C_LIB) $(C_SRC) $< 
+	$(CC) $(CFLAGS) -shared -o $(C_LIB) $(C_SRC)
 
 make_rust:
 	cd rational-rs ; cargo build --release --quiet

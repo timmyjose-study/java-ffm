@@ -22,11 +22,7 @@ impl Rational {
         let denom = self.denom * other.denom;
 
         let g = gcd(num, denom);
-
-        Rational {
-            num: num / g,
-            denom: denom / g,
-        }
+        Rational::new(num / g, denom / g)
     }
 
     pub fn sub(&self, other: &Rational) -> Self {
@@ -34,10 +30,7 @@ impl Rational {
         let denom = self.denom * other.denom;
 
         let g = gcd(num, denom);
-        Rational {
-            num: num / g,
-            denom: denom / g,
-        }
+        Rational::new(num / g, denom / g)
     }
 
     pub fn mul(&self, other: &Rational) -> Self {
@@ -45,11 +38,7 @@ impl Rational {
         let denom = self.denom * other.denom;
 
         let g = gcd(num, denom);
-
-        Rational {
-            num: num / g,
-            denom: denom / g,
-        }
+        Rational::new(num / g, denom / g)
     }
 
     pub fn div(&self, other: &Rational) -> Self {
@@ -57,10 +46,7 @@ impl Rational {
         let denom = self.denom * other.num;
 
         let g = gcd(num, denom);
-        Rational {
-            num: num / g,
-            denom: denom / g,
-        }
+        Rational::new(num / g, denom / g)
     }
 }
 
