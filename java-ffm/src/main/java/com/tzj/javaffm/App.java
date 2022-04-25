@@ -2,7 +2,6 @@ package com.tzj.javaffm;
 
 import jdk.incubator.foreign.CLinker;
 import jdk.incubator.foreign.FunctionDescriptor;
-import jdk.incubator.foreign.ResourceScope;
 import jdk.incubator.foreign.SymbolLookup;
 import jdk.incubator.foreign.ValueLayout;
 
@@ -51,7 +50,7 @@ public class App {
             SymbolLookup.loaderLookup().lookup("rat_free").get(),
             FunctionDescriptor.ofVoid(ValueLayout.ADDRESS));
 
-    try (var scope = ResourceScope.newConfinedScope()) {
+    try {
       var rat1 = rat_init.invoke(2, 4);
       var rat2 = rat_init.invoke(3, 9);
 
@@ -117,7 +116,7 @@ public class App {
             SymbolLookup.loaderLookup().lookup("rat_rs_free").get(),
             FunctionDescriptor.ofVoid(ValueLayout.ADDRESS));
 
-    try (var scope = ResourceScope.newConfinedScope()) {
+    try {
       var rat_rs1 = rat_rs_init.invoke(2, 4);
       var rat_rs2 = rat_rs_init.invoke(3, 9);
 
